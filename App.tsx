@@ -7,6 +7,7 @@ import Spacer from './src/common/components/Spacer';
 import Container from './src/common/components/Container';
 import { Content } from './src/common/components/Content';
 import { Icon } from './src/common/components/Icon';
+import { Avatar } from './src/common/components/Avatar';
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
           <Text size={20} color="onSecondary">aaaa teste</Text>
           <Spacer height={20} />
           <Icon icon='home' color="red" size={40}/>
+          <Avatar/>
         </Content>
       </Container>
     </ThemeProvider>
