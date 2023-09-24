@@ -8,6 +8,7 @@ import Container from './src/common/components/Container';
 import { Content } from './src/common/components/Content';
 import { Icon } from './src/common/components/Icon';
 import { Avatar } from './src/common/components/Avatar';
+import { NotFound } from './src/common/components/NotFound';
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
           <Spacer height={20} />
           <Icon icon='home' color="red" size={40}/>
           <Avatar/>
+          <NotFound />
         </Content>
       </Container>
     </ThemeProvider>
