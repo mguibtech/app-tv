@@ -11,19 +11,15 @@ import { Avatar } from './src/common/components/Avatar';
 import { NotFound } from './src/common/components/NotFound';
 import { Input } from './src/common/components/Input';
 import ShowCover from './src/common/components/ShowCover';
+import { EpisodeCover } from './src/common/components/EpisodeCover';
 
 export default function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container>
         <Content>
-          <Text size={20} color="onSecondary">aaaa teste</Text>
-          <Spacer height={20} />
           <Input loading/>
-          <Icon icon='home' color="red" size={40}/>
-          <Avatar/>
-          <NotFound />
-          <ShowCover />
+          <EpisodeCover size="large" url="https://static.tvmaze.com/uploads/images/medium_landscape/15/38639.jpg"/>
         </Content>
       </Container>
     </ThemeProvider>
