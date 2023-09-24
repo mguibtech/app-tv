@@ -4,26 +4,17 @@ import { StyleSheet, View } from 'react-native';
 import { defaultTheme } from './src/common/constants/styles/theme/defaultTheme';
 import Text from './src/common/components/Text';
 import Spacer from './src/common/components/Spacer';
+import Container from './src/common/Container';
 
 export default function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <View style={styles.container}>
+      <Container>
+        <Text size={20} color="onSecondary">Testando teste</Text>
+        <Spacer height={20} />
         <Text size={20} color="secondary">Testando teste</Text>
-        <Spacer height={20}/>
-        <Text size={20} color="secondary">Testando teste</Text>
-
         <StatusBar style="auto" />
-      </View>
+      </Container>
     </ThemeProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
