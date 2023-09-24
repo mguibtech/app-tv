@@ -10,6 +10,7 @@ import { Icon } from './src/common/components/Icon';
 import { Avatar } from './src/common/components/Avatar';
 import { NotFound } from './src/common/components/NotFound';
 import { Input } from './src/common/components/Input';
+import ShowCover from './src/common/components/ShowCover';
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
           <Icon icon='home' color="red" size={40}/>
           <Avatar/>
           <NotFound />
+          <ShowCover />
         </Content>
       </Container>
     </ThemeProvider>
