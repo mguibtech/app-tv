@@ -12,6 +12,8 @@ import { NotFound } from './src/common/components/NotFound';
 import { Input } from './src/common/components/Input';
 import ShowCover from './src/common/components/ShowCover';
 import { EpisodeCover } from './src/common/components/EpisodeCover';
+import { EpisodeCard } from './src/common/components/EpisodeCard';
+import { episodeMocked } from './src/common/constants/mocks/episode.mock';
 
 export default function App() {
   return (
@@ -20,6 +22,7 @@ export default function App() {
         <Content>
           <Input loading/>
           <EpisodeCover size="large" url="https://static.tvmaze.com/uploads/images/medium_landscape/15/38639.jpg"/>
+          <EpisodeCard episode={episodeMocked}/>
         </Content>
       </Container>
     </ThemeProvider>

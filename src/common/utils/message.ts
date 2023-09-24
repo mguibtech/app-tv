@@ -1,0 +1,1 @@
+export const noSumary = "No sumary available";
