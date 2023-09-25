@@ -14,17 +14,15 @@ import ShowCover from './src/common/components/ShowCover';
 import { EpisodeCover } from './src/common/components/EpisodeCover';
 import { EpisodeCard } from './src/common/components/EpisodeCard';
 import { episodeMocked } from './src/common/constants/mocks/episode.mock';
+import { NavigationContainer } from '@react-navigation/native';
+import { BottomTabNavigator } from './src/navigation/BottomTabNavigator';
 
 export default function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container>
-        <Content>
-          <Input loading/>
-          <EpisodeCover size="large" url="https://static.tvmaze.com/uploads/images/medium_landscape/15/38639.jpg"/>
-          <EpisodeCard episode={episodeMocked}/>
-        </Content>
-      </Container>
+      <NavigationContainer>
+        <BottomTabNavigator/>
+      </NavigationContainer>
     </ThemeProvider>
   );
 }
