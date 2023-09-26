@@ -9,9 +9,18 @@ export function Detail(){
      */
     const {params:{show}} = useRoute<DetailRouteProp>()
 
-    const { episodes, seasons } = useDetailController({show})
+    const { 
+        episodes, 
+        seasons,
+        formattedDate,
+        generes,
+        moreSummary,
+        schedule,
+        selectedSeason,
+        summaryWithotHTML
+     } = useDetailController({show})
     console.log(
-        "Dados recebidos da API =>>>>>  ", episodes, seasons
+        "Dados recebidos da API =>>>>>  ", formattedDate, generes
     )
 
     return(
