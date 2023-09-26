@@ -5,6 +5,7 @@ import { Icon } from "../../common/components/Icon";
 import { Favorites } from "../../screens/Favorites/favorities.view";
 import { SearchBar } from "react-native-screens";
 import { Detail } from "../../screens/Detail/detail.view";
+import { Search } from "../../screens/Search/search.view";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -45,7 +46,7 @@ export const BottomTabNavigator = () => {
 
             <BottomTab.Screen
                 name="Search"
-                component={Detail}
+                component={Search}
                 options={{
                     tabBarIcon: ({ color, size, focused }) => (
                         <Icon icon="search" color={color} size={size} />

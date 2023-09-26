@@ -12,7 +12,7 @@
   "dependencies": {
     "@react-navigation/bottom-tabs": "^6.0.5",
     "@react-navigation/native": "^6.0.2",
-    "@react-navigation/native-stack": "^6.1.0",
+    "@react-navigation/native-stack": "^6.9.13",
     "@types/react": "~18.2.14",
     "axios": "^0.27.2",
     "date-fns": "^2.29.3",

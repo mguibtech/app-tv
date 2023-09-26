@@ -7,69 +7,74 @@ import { flatListStyleSheet } from "../../common/utils/flatiList";
 import { Logo } from "./styles";
 import ShowCover from "../../common/components/ShowCover";
 import Spacer from "../../common/components/Spacer";
+import { useNavigation } from "@react-navigation/native";
 
 export function Home() {
+    /**
+     * Navigation
+     */
+    const {navigate} = useNavigation();
+    
 
     const { colors, spacing } = useTheme()
     const { shows, isRefreshing, loadShows, loading, currentPage } = useHomeController()
 
-    console.log("carregando dados do loading =>>>>> " + shows?.[0])
 
     return (
         <Container>
             <SafeAreaView>
-                <FlatList
-                    data={shows}
-                    numColumns={2}
-                    columnWrapperStyle={flatListStyleSheet.columnWrapperStyle}
-                    style={{ paddingHorizontal: spacing.sm }}
-                    ListHeaderComponent={() => (
+            <FlatList
+                data={shows}
+                numColumns={2}
+                columnWrapperStyle={flatListStyleSheet.columnWrapperStyle}
+                style={{ paddingHorizontal: spacing.sm }}
+                ListHeaderComponent={() => (
+                    <View>
+                        <Logo />
+                    </View>
+                )}
+                renderItem={({ item, index }) => (
+                    <ShowCover
+                        key={`${item.id + index + item.name}`}
+                        url={item.image?.medium}
+                        title={item.name}
+                        onpress={() => {
+                            navigate('Details', {show: item});
+                        }}
+                    />
+                )}
+                ItemSeparatorComponent={() => (
+                    <Spacer height={spacing.sm} />
+                )}
+                ListFooterComponent={() => {
+                    return (
                         <View>
-                            <Logo />
+                            {loading && (
+                                <>
+                                    <Spacer height={spacing.lg}/>
+                                    <ActivityIndicator size={'small'} color={colors.onSecondary}/>
+                                </>
+                            )}
+                            <Spacer height={spacing.sm}/>
                         </View>
-                    )}
-                    renderItem={({ item, index }) => (
-                        <ShowCover
-                            key={item.id + index + item.name}
-                            url={item.image?.medium}
-                            title={item.name}
-                            onpress={() => {
-                                // abrir tela de detalhes
-                            }}
-                        />
-                    )}
-                    ItemSeparatorComponent={() => (
-                        <Spacer height={spacing.sm} />
-                    )}
-                    ListFooterComponent={() => {
-                        return (
-                            <View>
-                                {loading && (
-                                    <>
-                                        <Spacer height={spacing.lg} />
-                                        <ActivityIndicator size={'small'} color={colors.onSecondary} />
-                                    </>
-                                )}
-                                <Spacer height={spacing.sm} />
-                            </View>
-                        )
-                    }}
-                    refreshControl={
-                        <RefreshControl
-                            enabled={!isRefreshing}
-                            tintColor={colors.onSecondary}
-                            colors={[colors.onSecondary]}
-                            refreshing={isRefreshing}
-                            onRefresh={() => loadShows(0, true)}
-                        />
+                    )
+                }}
+                refreshControl={
+                    <RefreshControl
+                        enabled={!isRefreshing}
+                        tintColor={colors.onSecondary}
+                        colors={[colors.onSecondary]}
+                        refreshing={isRefreshing}
+                        onRefresh={() => loadShows(0, true)}
+                    />
+                }
+                onEndReached={() => {
+                    if(!loading){
+                        loadShows(currentPage)
                     }
-                    onEndReached={() => {
-                        if (!loading) {
-                            loadShows(currentPage)
-                        }
-                    }}
-                    onEndReachedThreshold={0.5}
-                />
+                }}
+                onEndReachedThreshold={0.5}
+            />
             </SafeAreaView>
         </Container>
     )
