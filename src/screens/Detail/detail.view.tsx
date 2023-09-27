@@ -1,4 +1,4 @@
-import { FlatList, Pressable, View, useWindowDimensions } from "react-native";
+import { FlatList, Platform, Pressable, View, useWindowDimensions } from "react-native";
 import { useDetailController } from "./detail.controller";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useState } from "react";
@@ -16,6 +16,7 @@ import {
 } from "./styles";
 import ShowCover from "../../common/components/ShowCover";
 import Text from "../../common/components/Text";
+import { SeasonsModal } from "./localComponents/SeasonsModal";
 
 
 export function Detail() {
@@ -43,7 +44,8 @@ export function Detail() {
         schedule,
         selectedSeason,
         toggleMoreSummary,
-        summaryWithotHTML
+        summaryWithotHTML,
+        setSelectedSeason
     } = useDetailController({ show })
     console.log(
         "Dados recebidos da API =>>>>>  ", formattedDate, generes
@@ -104,6 +106,21 @@ export function Detail() {
                                         </Text>
                                     )}
                                 </Text>
+                                {!!selectedSeason && (
+                                    <View>
+                                        <Spacer height={spacing.lg}/>
+                                        <RowButtonSeason onPress={() => setIsModalVisible(true)}>
+                                            <ContentttonSeason>
+                                                <Text color="caption">
+                                                    Season {selectedSeason.number}
+                                                </Text>
+                                                <Spacer width={spacing.sm}/>
+                                                <Icon icon="menuDown" color={colors.caption}/>
+                                            </ContentttonSeason>
+                                        </RowButtonSeason>
+                                        <Spacer height={Platform.OS === "ios" ? spacing.sm : spacing.md}/>
+                                    </View>
+                                )}
                             </View>
                         )
                     }}
@@ -111,6 +128,13 @@ export function Detail() {
 
                 />
             </Content>
+            <SeasonsModal
+                visible={isModalVisile}
+                seasons={seasons}
+                selectedSeason={selectedSeason}
+                setVisible={setIsModalVisible}
+                setSelectedSeason={setSelectedSeason}
+            />
         </Container>
     )
 }

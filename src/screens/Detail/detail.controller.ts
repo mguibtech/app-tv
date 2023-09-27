@@ -92,5 +92,6 @@ export const useDetailController = ({show}: DetailProps) => {
         selectedSeason,
         episodes, 
         seasons, 
+        setSelectedSeason
     }
 }
