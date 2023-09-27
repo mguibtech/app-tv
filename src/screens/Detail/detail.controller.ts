@@ -50,8 +50,9 @@ export const useDetailController = ({show}: DetailProps) => {
             schedule = days.join(", ")
         }
         if(time.length > 0){
-            schedule += ` - ${schedule} at ${time}`;
+            schedule = ` - ${schedule} at ${time}`;
         }
+        return schedule
     },[show])
 
     /**
@@ -60,8 +61,7 @@ export const useDetailController = ({show}: DetailProps) => {
     */
     
     const toggleMoreSummary = () => setMoreSummary((old) => !old);
-    
-    
+        
    /**
     * Effects
     */
