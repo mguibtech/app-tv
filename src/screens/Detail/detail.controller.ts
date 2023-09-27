@@ -7,6 +7,7 @@ import { fetchEpisodesBySeason } from "../../repositories/episodes/episodes.repo
 import { removeHtmlFromString } from "../../common/utils/html"
 import { noSumary } from "../../common/utils/message"
 import { format } from "date-fns"
+import { useFavoritesShows } from "../../common/hooks/useFavoritesShos"
 
 export const useDetailController = ({show}: DetailProps) => {
     /**
@@ -16,6 +17,11 @@ export const useDetailController = ({show}: DetailProps) => {
     const [seasons, setSeasons] = useState<SeasonModel[]>([]);
     const [selectedSeason, setSelectedSeason] = useState<SeasonModel>();
     const [episodes, setEpisodes] = useState<EpisodeModel[]>([])
+
+    /**
+     * Contexts
+     */
+    const { addFavoriteShow, favoritesShows, removeFavoriteShow } = useFavoritesShows()
 
     /**
      * Memos
@@ -92,6 +98,9 @@ export const useDetailController = ({show}: DetailProps) => {
         selectedSeason,
         episodes, 
         seasons, 
-        setSelectedSeason
+        setSelectedSeason,
+        addFavoriteShow,
+        favoritesShows,
+        removeFavoriteShow
     }
 }

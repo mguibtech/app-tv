@@ -5,12 +5,15 @@ import { BottomTabNavigator } from './src/navigation/BottomTabNavigator';
 import Routes from './src/navigation';
 import { SeasonsModal } from './src/screens/Detail/localComponents/SeasonsModal';
 import { seasonMocked } from './src/common/constants/mocks/season.mock';
+import { FavoritesShows } from './src/common/contexts/FavoritesShows';
 
 export default function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <NavigationContainer>
-        <Routes/>
+        <FavoritesShows>
+          <Routes />
+        </FavoritesShows>
       </NavigationContainer>
     </ThemeProvider>
   );

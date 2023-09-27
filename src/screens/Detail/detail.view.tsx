@@ -45,7 +45,10 @@ export function Detail() {
         selectedSeason,
         toggleMoreSummary,
         summaryWithotHTML,
-        setSelectedSeason
+        setSelectedSeason,
+        favoritesShows,
+        addFavoriteShow,
+        removeFavoriteShow
     } = useDetailController({ show })
     console.log(
         "Dados recebidos da API =>>>>>  ", formattedDate, generes
@@ -67,7 +70,7 @@ export function Detail() {
                     renderItem={({ item }) => (<EpisodeCard episode={item} />)}
                     ItemSeparatorComponent={() => <Spacer height={spacing.md} />}
                     ListHeaderComponent={() => {
-                        const isFavorite = false;
+                        const isFavorite = favoritesShows[show.id];
 
                         return (
                             <View>
@@ -78,7 +81,11 @@ export function Detail() {
                                         <Text>{show.name}</Text>
                                         <Spacer height={spacing.sm} />
                                         <RowFavorite onPress={() => {
-                                            //TODO:  Remove from favorite
+                                            if(isFavorite){
+                                                removeFavoriteShow(show.id)
+                                            }else{
+                                                addFavoriteShow(show)
+                                            }
                                         }}>
                                             <Text size={16} color="caption">
                                                 {show.rating.average}
@@ -118,7 +125,7 @@ export function Detail() {
                                                 <Icon icon="menuDown" color={colors.caption}/>
                                             </ContentttonSeason>
                                         </RowButtonSeason>
-                                        <Spacer height={Platform.OS === "ios" ? spacing.sm : spacing.md}/>
+                                        <Spacer height={Platform.OS === "ios" ? spacing.md : spacing.lg}/>
                                     </View>
                                 )}
                             </View>
